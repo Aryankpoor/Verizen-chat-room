@@ -1,3 +1,4 @@
+"use client";
 import CustomersTable from "../components/CustomersTable";
 import { useCallback, useEffect, useState } from "react";
 import SideNav from "@/app/components/SideNav";
