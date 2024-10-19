@@ -8,19 +8,24 @@
     "start": "next start",
     "lint": "next lint",
     "migrate": "npx drizzle-kit generate -- dotenv_config_path='.env.local'",
-    "db-create": "npx drizzle-kit push --force"
+    "db-create": "npx drizzle-kit push --force",
+    "email": "email dev --dir src/app/emails"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
     "@clerk/nextjs": "^5.7.5",
     "@neondatabase/serverless": "^0.10.1",
+    "@react-email/components": "0.0.25",
     "clerk": "^0.8.3",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.35.2",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
+    "react-email": "3.0.1",
     "react-icons": "^5.3.0",
+    "react-to-print": "^3.0.2",
+    "resend": "^4.0.0",
     "touch": "^3.1.1"
   },
   "devDependencies": {
@@ -33,4 +38,3 @@
     "typescript": "^5"
   }
 }
-
