@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { getDBVersion } from "./db";
 
-export default function Home() {
+export default async function Home() {
+  const { version } = await getDBVersion();
+  console.log({version})
   return (
     <main className='w-full'>
       <section className='p-8 h-[90vh] md:w-2/3 mx-auto text-center w-full flex flex-col items-center justify-center'>
