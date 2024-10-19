@@ -6,13 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "npx drizzle-kit generate -- dotenv_config_path='.env.local'",
+    "db-create": "npx drizzle-kit push --force"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
     "@clerk/nextjs": "^5.7.5",
     "@neondatabase/serverless": "^0.10.1",
     "clerk": "^0.8.3",
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.35.2",
     "next": "14.2.15",
     "react": "^18",
@@ -30,3 +33,4 @@
     "typescript": "^5"
   }
 }
+
