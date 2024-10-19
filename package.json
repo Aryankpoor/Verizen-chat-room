@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
+    "@clerk/nextjs": "^5.7.5",
+    "clerk": "^0.8.3",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
