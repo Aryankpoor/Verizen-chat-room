@@ -102,10 +102,6 @@ export default function Dashboard() {
 
 	const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (!customer || !invoiceTitle || !itemList.length || itemName) {
-			alert("Please fill all fields");
-			return;
-		}
 		createInvoice();
 	};
 

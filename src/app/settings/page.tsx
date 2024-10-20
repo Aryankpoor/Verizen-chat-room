@@ -90,7 +90,7 @@ export default function Settings() {
 						Update your bank account information
 					</p>
 
-					<div className='flex md:flex-row flex-col items-start justify-between w-full md:space-x-4'>
+					<div className='flex md:flex-row flex-col items-start justify-between w-full md:space-x-4 infobank'>
 						{bankInfo?.account_name && (
 							<section className='md:w-1/3 w-full bg-blue-50 h-full p-3 rounded-md space-y-3'>
 								<p className='text-sm opacity-75'>
