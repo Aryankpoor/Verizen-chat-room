@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState, useCallback } from "react";
 import SideNav from "@/app/components/SideNav";
 
 export default function Settings() {
-
+    //👇🏻 default bank info
     const [bankInfo, setBankInfo] = useState({
         account_name: "",
         account_number: 1234567890,
@@ -11,7 +11,7 @@ export default function Settings() {
         currency: "",
  });
 
-   
+    //👇🏻 bank info from the form entries
     const [inputBankInfo, setInputBankInfo] = useState({
         accountName: "",
         accountNumber: 1234567890,
@@ -19,7 +19,7 @@ export default function Settings() {
         currency: "",
  });
 
-    
+    //👇🏻 updates the form entries state
     const handleUpdateBankInfo = (
         e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
  ) => {
@@ -30,10 +30,10 @@ export default function Settings() {
  }));
  };
 
-
+    //👇🏻 updates the bank info
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Attempts to update bank info...");
+        console.log("Tries to update bank info...");
  };
 return (
     <div className='w-full'>
@@ -121,7 +121,6 @@ return (
                 <option value='$'>USD</option>
                 <option value='€'>EUR</option>
                 <option value='£'>GBP</option>
-                <option value='£'>INR</option>
               </select>
               <div className='flex items-center justify-end'>
                 <button
@@ -137,5 +136,4 @@ return (
       </main>
     </div>
 )
-}   
-
+}

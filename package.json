@@ -1,5 +1,5 @@
 {
-  "name": "welp",
+  "name": "invoice-app-with-neon",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,15 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "migrate": "npx drizzle-kit generate -- dotenv_config_path='.env.local'",
-    "db-create": "npx drizzle-kit push --force",
+    "db-create": "npx -r dotenv/config node_modules/.bin/drizzle-kit push --config drizzle.config.ts",
     "email": "email dev --dir src/app/emails"
   },
   "dependencies": {
-    "@auth0/nextjs-auth0": "^3.5.0",
     "@clerk/nextjs": "^5.7.5",
     "@neondatabase/serverless": "^0.10.1",
     "@react-email/components": "0.0.25",
-    "clerk": "^0.8.3",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.35.2",
     "next": "14.2.15",

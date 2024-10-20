@@ -7,7 +7,11 @@ if (!process.env.NEON_DATABASE_URL) {
 }
 const sql = neon(process.env.NEON_DATABASE_URL!);
 
-
+export const getDBVersion = async() => {
+    const sql = neon(process.env.NEON_DATABASE_URL!);
+    const response = await sql`SELECT version()`;
+    return { version: response[0].version }
+}
 export const invoicesDB = drizzle(sql, {
   schema: { invoicesTable }
 });
@@ -19,9 +23,3 @@ export const customersDB = drizzle(sql, {
 export const bankInfoDB = drizzle(sql, {
   schema: { bankInfoTable }
 });
-
-export const getDBVersion = async() => {
-    const sql = neon(process.env.NEON_DATABASE_URL!);
-    const response = await sql`SELECT version()`;
-    return { version: response[0].version }
-}

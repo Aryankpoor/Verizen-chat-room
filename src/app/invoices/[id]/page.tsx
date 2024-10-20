@@ -156,7 +156,7 @@ export default function Invoices() {
 			<section className='w-full flex p-4 items-center justify-center space-x-5 mb-3'>
 				<button
 					className='p-3 text-blue-50 bg-blue-500 rounded-md'
-					onClick={() => handlePrint()}
+					onClick={() =>  handlePrint}
 				>
 					Download
 				</button>

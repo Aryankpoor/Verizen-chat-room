@@ -3,15 +3,17 @@ import { getDBVersion } from "./db";
 
 export default async function Home() {
   const { version } = await getDBVersion();
-  console.log({version})
+    console.log({version})
   return (
     <main className='w-full'>
       <section className='p-8 h-[90vh] md:w-2/3 mx-auto text-center w-full flex flex-col items-center justify-center'>
         <h2 className='text-3xl font-bold mb-4 md:text-4xl'>
-          Create dynamic invoices with Welp
+          Create invoices for your customers
         </h2>
         <p className='opacity-70 mb-4 text-sm md:text-base leading-loose'>
-          Welp is an open source invoicing software that helps you craft professional invoices for your customers for free!
+          Invoicer is an online invoicing software that helps you craft and
+          print professional invoices for your customers for free! Keep your
+          business and clients with one invoicing software.
         </p>
         <Link
           href='/dashboard'
