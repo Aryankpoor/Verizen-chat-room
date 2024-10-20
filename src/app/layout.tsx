@@ -28,9 +28,9 @@ export default function RootLayout({
 				<body className={inter.className}>
 					<nav className='flex justify-between items-center h-[10vh] px-8 border-b-[1px]'>
 						<Link href='/' className='text-xl font-extrabold text-blue-700'>
-							Invoicer
+							WELP
 						</Link>
-						<div className='flex items-center gap-5'>
+						<div className='flex items-center gap-5 name'>
 							{/*-- if user is signed out --*/}
 							<SignedOut>
 								<SignInButton mode='modal' />
@@ -40,7 +40,7 @@ export default function RootLayout({
 								<Link href='/dashboard' className=''>
 									Dashboard
 								</Link>
-								<UserButton showName />
+								<UserButton/>
 							</SignedIn>
 						</div>
 					</nav>

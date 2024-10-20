@@ -25,3 +25,15 @@ body {
     text-wrap: balance;
   }
 }
+
+UserButton {
+  color: white;
+}
+
+.card, option, textarea, input {
+  color: black; 
+}
+
+.name {
+  color: #ffffff;
+}
