@@ -134,7 +134,7 @@ export default function Dashboard() {
 
 						<form className='w-full flex flex-col' onSubmit={handleFormSubmit}>
 							<label htmlFor='customer'>Customer</label>
-							{customers.length > 0 ? (
+							{customers.length > 0 ? (	
 								<select
 									className='border-[1px] p-2 rounded-sm mb-3'
 									required
