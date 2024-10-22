@@ -44,7 +44,8 @@ export default function RootLayout({
 							</SignedIn>
 						</div>
 					</nav>
-
+					<br />
+					<br />
 					{children}
 				</body>
 			</html>
