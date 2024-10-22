@@ -11,11 +11,10 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import * as React from "react"
-import { BorderBeam } from "@/components/ui/border-beam";
 import { Progress } from "@/components/ui/progress"
 import { useTheme } from "next-themes";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
-import ShineBorder from "@/components/ui/shine-border";
+import TextReveal from "@/components/ui/text-reveal";
 
 
 export default async function Home() {
@@ -133,28 +132,14 @@ export default async function Home() {
       </TableFooter>
     </Table>
       </div>
-      
       </div>
-      
       </section>
-      <br />
       <section>
         <div className="dev">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-        The website is currently in testing stage
-      </h1>
+        <TextReveal text="Welp is currently in testing stage. Please test the website out and let me know if you find any bugs or issues. You can also contribute to the project by submitting a pull
+         request on GitHub. The links have been provided in the footer section of the website. There are still issues coming up here and there and we are working on fixing them." />
         </div>
       
-      <p className="leading-7 [&:not(:first-child)]:mt-6">
-        Please test the website out and let me know if you find any bugs or issues. You can also contribute to the project by submitting a pull
-         request on GitHub. The links have been provided in the footer section of the website. Till then, here is how much the website has progressed so far.
-      </p>
-      <br />
-      <div className="prog">
-      <Progress value={73} />
-      </div>
-      
-      <br/>
       </section>
 
     
