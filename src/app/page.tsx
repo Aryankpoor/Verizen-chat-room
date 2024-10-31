@@ -137,7 +137,7 @@ export default async function Home() {
       <section>
         <div className="dev">
         <TextReveal text="Welp is currently in testing stage. Please test the website out and let me know if you find any bugs or issues. You can also contribute to the project by submitting a pull
-         request on GitHub. The links have been provided in the footer section of the website. There are still issues coming up here and there and we are working on fixing them." />
+        request on GitHub. The links have been provided in the footer section of the website. There are still issues coming up here and there and we are working on fixing them." />
         </div>
       
       </section>
