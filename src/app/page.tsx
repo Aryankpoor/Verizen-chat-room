@@ -11,8 +11,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import * as React from "react"
-import { Progress } from "@/components/ui/progress"
-import { useTheme } from "next-themes";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
 import TextReveal from "@/components/ui/text-reveal";
 

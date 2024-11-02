@@ -3,6 +3,9 @@ import CustomersTable from "../components/CustomersTable";
 import { useCallback, useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import SideNav from "@/app/components/SideNav";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea"
 
 export default function Customers() {
 	const { isLoaded, isSignedIn, user } = useUser();
@@ -75,10 +78,10 @@ export default function Customers() {
 					<form className='w-full' onSubmit={handleAddCustomer} method='POST'>
 						<div className='w-full flex items-center space-x-4  mb-3'>
 							<section className='w-1/2'>
-								<label className=''>Customer&apos;s Name</label>
-								<input
+								<Label className=''>Customer&apos;s Name</Label>
+								<Input
 									type='text'
-									className='w-full p-2 border border-gray-200 rounded-sm'
+									className='w-full p-2 border border-gray-200 rounded-sm text-white'
 									value={customerName}
 									required
 									onChange={(e) => setCustomerName(e.target.value)}
@@ -86,26 +89,28 @@ export default function Customers() {
 							</section>
 
 							<section className='w-1/2'>
-								<label className=''>Email Address</label>
-								<input
+								<Label className=''>Email Address</Label>
+								<Input
 									type='email'
-									className='w-full p-2 border border-gray-200 rounded-sm'
+									className='w-full p-2 border border-gray-200 rounded-sm text-white'
 									value={customerEmail}
 									onChange={(e) => setCustomerEmail(e.target.value)}
 									required
 								/>
 							</section>
 						</div>
-						<label htmlFor='address'>Billing Address</label>
-						<textarea
+						<Label htmlFor='address'>Billing Address</Label>
+						<Textarea
 							name='address'
 							id='address'
 							rows={3}
-							className='w-full p-2 border border-gray-200 rounded-sm'
+							className='w-full p-2 border border-gray-200 rounded-sm text-white'
 							value={customerAddress}
 							onChange={(e) => setCustomerAddress(e.target.value)}
+							placeholder="Enter customer's billing address"
 							required
 						/>
+						<br />
 
 						<button
 							className='bg-blue-500 text-white p-2 rounded-md mb-6'

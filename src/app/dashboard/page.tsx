@@ -5,6 +5,17 @@ import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import SideNav from "@/app/components/SideNav";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+  } from "@/components/ui/select"
 
 export default function Dashboard() {
 	const { isLoaded, isSignedIn, user } = useUser();
@@ -135,18 +146,21 @@ export default function Dashboard() {
 						<form className='w-full flex flex-col' onSubmit={handleFormSubmit}>
 							<label htmlFor='customer'>Customer</label>
 							{customers.length > 0 ? (	
-								<select
-									className='border-[1px] p-2 rounded-sm mb-3'
+								<Select
 									required
 									value={customer}
-									onChange={(e) => setCustomer(e.target.value)}
+									onValueChange={(value) => setCustomer(value)}
 								>
+									<SelectTrigger className="w-[280px]">
+										<SelectValue placeholder="Select Customer" />
+										</SelectTrigger>
+									<SelectContent>
 									{customers.map((customer: any) => (
-										<option key={customer.id} value={customer.name}>
-											{customer.name}
-										</option>
+										<SelectItem key={customer.id} value={customer.name}>{customer.name}</SelectItem>
 									))}
-								</select>
+									</SelectContent>
+									
+								</Select>
 							) : (
 								<p className='text-sm text-red-500'>
 									No customers found. Please add a customer
@@ -154,11 +168,11 @@ export default function Dashboard() {
 							)}
 
 							<label htmlFor='title'>Title</label>
-							<input
-								className='border-[1px] rounded-sm mb-3 py-2 px-3'
+							<Input
 								required
 								value={invoiceTitle}
 								onChange={(e) => setInvoiceTitle(e.target.value)}
+								className="text-white"
 							/>
 
 							<div className='w-full flex justify-between flex-col'>
@@ -166,50 +180,53 @@ export default function Dashboard() {
 
 								<div className='flex space-x-3'>
 									<div className='flex flex-col w-1/4'>
-										<label htmlFor='itemName' className='text-sm'>
-											Name
-										</label>
-										<input
-											type='text'
-											name='itemName'
-											placeholder='Name'
-											className='py-2 px-4 mb-6 bg-gray-100'
-											value={itemName}
+										<Label htmlFor="itemName" className="font-bold">Name</Label>
+										<br />
+										<Input 
+											type="text" 
+											className="text-white" 
+											name='itemName' 
+											placeholder="Name" 
+											value={itemName} 
 											onChange={(e) => setItemName(e.target.value)}
+											style={{ width: '100%' }}
 										/>
 									</div>
 
 									<div className='flex flex-col w-1/4'>
-										<label htmlFor='itemCost' className='text-sm'>
-											Cost
-										</label>
-										<input
+										<Label htmlFor='itemCost' className='text-sm font-bold'>
+											Cost	
+										</Label>
+										<br />
+										<Input
 											type='number'
 											name='itemCost'
 											placeholder='Cost'
-											className='py-2 px-4 mb-6 bg-gray-100'
 											value={itemCost}
+											className='bg-black text-white flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50'
 											onChange={(e) => setItemCost(Number(e.target.value))}
 										/>
 									</div>
 
 									<div className='flex flex-col justify-center w-1/4'>
-										<label htmlFor='itemQuantity' className='text-sm'>
+										<Label htmlFor='itemQuantity' className='text-sm font-bold'>
 											Quantity
-										</label>
-										<input
+										</Label>
+										<br />
+										<Input
 											type='number'
 											name='itemQuantity'
+											className='bg-black text-white flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50'
 											placeholder='Quantity'
-											className='py-2 px-4 mb-6 bg-gray-100'
 											value={itemQuantity}
 											onChange={(e) => setItemQuantity(Number(e.target.value))}
 										/>
 									</div>
 
 									<div className='flex flex-col justify-center w-1/4'>
-										<p className='text-sm'>Price</p>
-										<p className='py-2 px-4 mb-6 bg-gray-100'>
+										<Label className="font-bold">Price</Label>
+										<br />
+										<p className='bg-black text-white flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50'>
 											{Number(itemCost * itemQuantity).toLocaleString("en-US")}
 										</p>
 									</div>
@@ -221,6 +238,7 @@ export default function Dashboard() {
 									Add Item
 								</button>
 							</div>
+							<br />
 
 							<InvoiceTable itemList={itemList} />
 							<button

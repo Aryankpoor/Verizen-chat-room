@@ -12,11 +12,11 @@ export default function InvoiceTable({ itemList }: { itemList: Item[] }) {
 
 			<tbody>
 				{itemList.map((item) => (
-					<tr key={item.id}>
+					<tr key={item.id} className="">
 						<td className='text-sm'>{item.name}</td>
-						<td className='text-sm'>{item.cost}</td>
-						<td className='text-sm'>{item.quantity}</td>
-						<td className='text-sm'>
+						<td className='text-sm text-right'>{item.cost}</td>
+						<td className='text-sm text-right'>{item.quantity}</td>
+						<td className='text-sm text-center'>
 							{Number(item.cost * item.quantity).toLocaleString()}
 						</td>
 					</tr>

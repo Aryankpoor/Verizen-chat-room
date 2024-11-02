@@ -2,6 +2,17 @@
 import { ChangeEvent, useEffect, useState, useCallback } from "react";
 import { useUser } from "@clerk/nextjs";
 import SideNav from "@/app/components/SideNav";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+  } from "@/components/ui/select"
 
 export default function Settings() {
 	const { isLoaded, isSignedIn, user } = useUser();
@@ -113,48 +124,48 @@ export default function Settings() {
 							method='POST'
 							onSubmit={handleSubmit}
 						>
-							<label htmlFor='accountName' className='text-sm'>
+							<Label htmlFor='accountName' className='text-sm'>
 								Account Name
-							</label>
-							<input
+							</Label>
+							<Input
 								type='text'
 								name='accountName'
 								id='accountName'
-								className='border-[1px] p-2 rounded mb-3'
+								className='border-[1px] p-2 rounded mb-3 text-white'
 								required
 								value={inputBankInfo.accountName}
 								onChange={handleUpdateBankInfo}
 							/>
 
-							<label htmlFor='accountNumber' className='text-sm'>
+							<Label htmlFor='accountNumber' className='text-sm'>
 								Account Number
-							</label>
-							<input
+							</Label>
+							<Input
 								type='number'
 								name='accountNumber'
 								id='accountNumber'
-								className='border-[1px] p-2 rounded mb-3'
+								className='border-[1px] p-2 rounded mb-3 text-white'
 								required
 								value={inputBankInfo.accountNumber}
 								onChange={handleUpdateBankInfo}
 							/>
 
-							<label htmlFor='bankName' className='text-sm'>
+							<Label htmlFor='bankName' className='text-sm'>
 								Bank Name
-							</label>
-							<input
+							</Label>
+							<Input
 								type='text'
 								name='bankName'
 								id='bankName'
-								className='border-[1px] p-2 rounded mb-3'
+								className='border-[1px] p-2 rounded mb-3 text-white'
 								required
 								value={inputBankInfo.bankName}
 								onChange={handleUpdateBankInfo}
 							/>
 
-							<label htmlFor='currency' className='text-sm'>
+							<Label htmlFor='currency' className='text-sm'>
 								Currency
-							</label>
+							</Label>
 							<select
 								name='currency'
 								id='currency'

@@ -9,6 +9,7 @@ import {
 } from "@clerk/nextjs";
 import Link from "next/link";
 import "./globals.css";
+import { neobrutalism } from '@clerk/themes'
 
 const inter = PT_Sans({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<ClerkProvider>
+		<ClerkProvider appearance={{
+			baseTheme: neobrutalism,
+		  }}>
 			<html lang='en'>
 				<body className={inter.className}>
 					<nav className='flex justify-between items-center h-[10vh] px-8 border-b-[1px]'>
