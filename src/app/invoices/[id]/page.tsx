@@ -5,13 +5,6 @@ import InvoiceTable from "@/app/components/InvoiceTable";
 import { useUser } from "@clerk/nextjs";
 import { useParams, useSearchParams } from "next/navigation";
 
-interface Props {
-	id: string;
-	customer: Customer;
-	bankInfo: BankInfo;
-	invoice: Invoice;
-}
-
 const formatDateString = (dateString: string): string => {
 	const date = new Date(dateString);
 	const day = date.getDate();
@@ -25,11 +18,11 @@ const Invoices = () => {
 	const { isLoaded, isSignedIn, user } = useUser();
 	const { id } = useParams<{ id: string }>();
 	const searchParams = useSearchParams();
-	const [customer, setCustomer] = useState<Customer>();
-	const [bankInfo, setBankInfo] = useState<BankInfo>();
-	const [invoice, setInvoice] = useState<Invoice>();
+	const [customer, setCustomer] = useState<Customer | undefined>();
+	const [bankInfo, setBankInfo] = useState<BankInfo | undefined>();
+	const [invoice, setInvoice] = useState<Invoice | undefined>();
 	const [disabled, setDisabled] = useState<boolean>(false);
-	const name = searchParams.get("customer");
+	const name = searchParams.get("customer") as string;
 	const contentRef = useRef<HTMLDivElement>(null);
 	const reactToPrintFn = useReactToPrint({ contentRef });
 
@@ -45,14 +38,14 @@ const Invoices = () => {
 
 	const getAllInvoiceData = useCallback(async () => {
 		try {
-			const [customer, bankInfo, invoice] = await Promise.all([
+			const [customerData, bankInfoData, invoiceData] = await Promise.all([
 				fetchData<any>(`/api/customers/single?name=${name}`),
 				fetchData<any>(`/api/bank-info?userID=${user?.id}`),
 				fetchData<any>(`/api/invoices/single?id=${id}`),
 			]);
-			setCustomer(customer?.customer[0]);
-			setBankInfo(bankInfo?.bankInfo[0]);
-			setInvoice(invoice?.invoice[0]);
+			setCustomer(customerData?.customer[0]);
+			setBankInfo(bankInfoData?.bankInfo[0]);
+			setInvoice(invoiceData?.invoice[0]);
 		} catch (err) {
 			console.error(err);
 		}
@@ -75,6 +68,8 @@ const Invoices = () => {
 					title: invoice?.title,
 					amount: invoice?.total_amount,
 					customerEmail: customer?.email,
+					customerAddress: customer?.address,
+					customerName: customer?.name,
 					issuerName: bankInfo?.account_name,
 					accountNumber: bankInfo?.account_number,
 					currency: bankInfo?.currency,
@@ -117,7 +112,7 @@ const Invoices = () => {
 			<div className='lg:w-2/3 w-full mx-auto shadow-md border-[1px] rounded min-h-[75vh] p-5 bg-violet-800' ref={contentRef}>
 				<header className='w-full flex items-center space-x-4 justify-between'>
 					<div className='w-4/5'>
-						<h2 className='text-lg font-semibold mb-3'>INVOICE #0{id}</h2>
+						<h2 className='text-lg font-semibold mb-3'>INVOICE #{id}</h2>
 						<section className='mb-6'>
 							<p className='opacity-60'>
 								Issuer Name: {bankInfo?.account_name}
@@ -146,13 +141,8 @@ const Invoices = () => {
 					<h2 className='text-lg font-semibold'>{invoice?.title}</h2>
 				</div>
 
-				<InvoiceTable
-					itemList={invoice?.items ? JSON.parse(invoice.items) : []}
-				/>
-				{bankInfo && customer && invoice && (
-					<InvoiceTable
-						itemList={invoice?.items ? JSON.parse(invoice.items) : []}
-					/>
+				{invoice?.items && (
+					<InvoiceTable itemList={JSON.parse(invoice.items)} />
 				)}
 			</div>
 		</div>

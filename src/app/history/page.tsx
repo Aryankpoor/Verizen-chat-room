@@ -51,7 +51,7 @@ export default function History() {
 									Invoice - #0{invoice.id} issued to{" "}
 									<span className='font-bold'>{invoice.customer_id}</span>
 								</p>
-								<h3 className='text-lg font-bold mb-[1px]'>{Number(invoice.total_amount).toLocaleString()}</h3>
+								<h3 className='text-lg font-bold mb-[1px] text-black'>{Number(invoice.total_amount).toLocaleString()}</h3>
 							</div>
 							<Link href={{
 								pathname: `/invoices/${invoice.id}`,

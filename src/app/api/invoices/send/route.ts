@@ -16,32 +16,32 @@ export async function POST(req: NextRequest) {
  } = await req.json();
 
     try {
-        const { data, error } = await resend.emails.send({
-            from: "Acme <onboarding@resend.dev>",
-            to: [customerEmail],
-            subject: title,
-            react: EmailTemplate({
-                invoiceID,
-                items: JSON.parse(items),
-                amount: Number(amount),
-                issuerName,
-                accountNumber,
-                currency,
- }) as React.ReactElement,
- });
+const { error } = await resend.emails.send({
+    from: "Acme <onboarding@resend.dev>",
+    to: [customerEmail],
+    subject: title,
+    react: EmailTemplate({
+        invoiceID,
+        items: JSON.parse(items),
+        amount: Number(amount),
+        issuerName,
+        accountNumber,
+        currency,
+    }) as React.ReactElement,
+});
 
         if (error) {
-            return Response.json(
+            return NextResponse.json(
  { message: "Email not sent!", error },
  { status: 500 }
  );
  }
 
         return NextResponse.json({ message: "Email delivered!" }, { status: 200 });
- } catch (error) {
+    } catch (error) {
         return NextResponse.json(
- { message: "Email not sent!", error },
- { status: 500 }
- );
- }
+            { message: "Email not sent!", error },
+            { status: 500 }
+        );
+    }
 }
