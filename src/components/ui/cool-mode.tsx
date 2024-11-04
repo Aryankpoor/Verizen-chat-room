@@ -1,4 +1,5 @@
-import React, { ReactNode, RefObject, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { ReactNode } from "react";
 
 export interface BaseParticle {
   element: HTMLElement | SVGSVGElement;

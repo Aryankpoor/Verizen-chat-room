@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/table"
 import * as React from "react"
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
-import TextReveal from "@/components/ui/text-reveal";
-
+import { Section, Row, Column, Img, Text, Hr} from "@react-email/components";
+import HyperText from "@/components/ui/hyper-text";
+import BlurIn from "@/components/ui/blur-in";
 
 export default async function Home() {
   
@@ -77,10 +78,9 @@ export default async function Home() {
     <br />
     <br />
     <br />
-        <h2 className='text-3xl font-bold mb-4 md:text-4xl'>
-        Welp is an open source invoicing system that allows you to create 
-        invoices for your customers. It is built with Next.js, and TailWind CSS.
-        </h2>
+        <BlurIn word="WELP IS AN OPEN SOURCE INVOICING SYSTEM THAT ALLOWS YOU TO CREATE 
+        INVOICES FOR YOUR CUSTOMERS. IT IS BUILT WITH NEXT.JS, AND TAILWIND" className='text-3xl font-bold mb-4 md:text-4xl' />
+
        
        <br />
         <Link
@@ -96,9 +96,7 @@ export default async function Home() {
       <section>
       <div className="ttable">
       <div className="t-head">
-        <h1 className="scroll-m-20 border-b pb-2 text-5xl font-semibold tracking-tight first:mt-0">
-        Create and Manage your invoices like a pro, all in one place
-      </h1>
+      <HyperText className="scroll-m-20 border-b pb-2 text-5xl font-semibold tracking-tight first:mt-0" text="Create and Manage your invoices like a pro, all in one place"/>
       <br />
         </div>
       <div className="t-body">
@@ -134,13 +132,118 @@ export default async function Home() {
       </section>
       <section>
         <div className="dev">
-        <TextReveal text="Welp is currently in testing stage. Please test the website out and let me know if you find any bugs or issues. You can also contribute to the project by submitting a pull
-        request on GitHub. The links have been provided in the footer section of the website. There are still issues coming up here and there and we are working on fixing them." />
+        <BlurIn word="Welp is currently in testing stage. Please test the website out and let me know if you find any bugs or issues. You can also contribute to the project by submitting a pull
+        request on GitHub. There are still issues coming up here and there and we are working on fixing them." className="text-3xl font-bold mb-4 md:text-4xl" />
         </div>
       
       </section>
-
-    
+      <Hr
+    style={{
+      marginTop: 16,
+      borderColor: "rgb(209,213,219)",
+      marginBottom: 16,
+      borderTopWidth: 2,
+    }}
+  />
+      <Section>
+  <Row>
+    <Column colSpan={4}>
+      <Img
+        alt="React Email logo"
+        height="42"
+        src="https://react.email/static/logo-without-background.png"
+      />
+      <Text
+        style={{
+          marginTop: 8,
+          marginBottom: 8,
+          fontSize: 32,
+          lineHeight: "48px",
+          fontWeight: 600,
+          color: "rgb(17,24,39)",
+        }}
+      >
+        Welp
+      </Text>
+      <Text
+        style={{
+          marginTop: 4,
+          marginBottom: "0px",
+          fontSize: 32,
+          lineHeight: "36px",
+          color: "rgb(107,114,128)",
+        }}
+      >
+        Nothing to see here
+      </Text>
+    </Column>
+    <Column
+      align="left"
+      style={{ display: "table-cell", verticalAlign: "bottom" }}
+    >
+      <Row
+        style={{
+          display: "table-cell",
+          height: 44,
+          width: 56,
+          verticalAlign: "bottom",
+        }}
+      >
+        <Column style={{ paddingRight: 8 }}>
+          <Link href="#">
+            <Img
+              alt="Facebook"
+              height="36"
+              src="https://react.email/static/facebook-logo.png"
+              width="36"
+            />
+          </Link>
+        </Column>
+        <Column style={{ paddingRight: 8 }}>
+          <Link href="#">
+            <Img alt="X" height="36" src="https://react.email/static/x-logo.png" width="36" />
+          </Link>
+        </Column>
+        <Column>
+          <Link href="#">
+            <Img
+              alt="Instagram"
+              height="36"
+              src="https://react.email/static/instagram-logo.png"
+              width="36"
+            />
+          </Link>
+        </Column>
+      </Row>
+      <Row>
+        <Text
+          style={{
+            marginTop: 8,
+            marginBottom: 8,
+            fontSize: 16,
+            lineHeight: "48px",
+            fontWeight: 600,
+            color: "rgb(107,114,128)",
+          }}
+        >
+          123 Main Street Anytown, CA 12345
+        </Text>
+        <Text
+          style={{
+            marginTop: 4,
+            marginBottom: "0px",
+            fontSize: 16,
+            lineHeight: "48px",
+            fontWeight: 600,
+            color: "rgb(107,114,128)",
+          }}
+        >
+          mail@example.com +123456789
+        </Text>
+      </Row>
+    </Column>
+  </Row>
+</Section>    
     </main>
   );
 }

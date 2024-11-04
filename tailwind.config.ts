@@ -59,7 +59,8 @@ const config: Config = {
   		animation: {
   			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
   			shine: 'shine var(--duration) infinite linear',
-  			'background-position-spin': 'background-position-spin 3000ms infinite alternate'
+  			'background-position-spin': 'background-position-spin 3000ms infinite alternate',
+  			gradient: 'gradient 8s linear infinite'
   		},
   		keyframes: {
   			'border-beam': {
@@ -84,6 +85,11 @@ const config: Config = {
   				},
   				'100%': {
   					backgroundPosition: 'bottom center'
+  				}
+  			},
+  			gradient: {
+  				to: {
+  					backgroundPosition: 'var(--bg-size) 0'
   				}
   			}
   		}

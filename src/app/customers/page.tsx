@@ -83,6 +83,7 @@ export default function Customers() {
 									type='text'
 									className='w-full p-2 border border-gray-200 rounded-sm text-white'
 									value={customerName}
+									placeholder="Enter customer name"
 									required
 									onChange={(e) => setCustomerName(e.target.value)}
 								/>
@@ -94,6 +95,7 @@ export default function Customers() {
 									type='email'
 									className='w-full p-2 border border-gray-200 rounded-sm text-white'
 									value={customerEmail}
+									placeholder="Enter email address of customer"
 									onChange={(e) => setCustomerEmail(e.target.value)}
 									required
 								/>

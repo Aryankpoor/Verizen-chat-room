@@ -207,7 +207,7 @@ export default function Dashboard() {
 											onChange={(e) => setItemCost(Number(e.target.value))}
 										/>
 									</div>
-
+									<br />
 									<div className='flex flex-col justify-center w-1/4'>
 										<Label htmlFor='itemQuantity' className='text-sm font-bold'>
 											Quantity
@@ -222,7 +222,7 @@ export default function Dashboard() {
 											onChange={(e) => setItemQuantity(Number(e.target.value))}
 										/>
 									</div>
-
+<br />
 									<div className='flex flex-col justify-center w-1/4'>
 										<Label className="font-bold">Price</Label>
 										<br />
