@@ -211,7 +211,7 @@ const Invoices = () => {
 			  </svg>
 			</div>
 		  </div>
-				{disabled ? "Sending..." : "Send Invoice"}
+				{disabled ? "Sending..." : "Send"}
 			</button>
 			</StyledWrapper>
 			<div className='lg:w-2/3 w-full mx-auto shadow-md border-[1px] rounded min-h-[75vh] p-5 bg-violet-800' ref={contentRef}>
