@@ -2,7 +2,6 @@
 import CustomersTable from "../components/CustomersTable";
 import { useCallback, useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import SideNav from "@/app/components/SideNav";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea"
@@ -69,7 +68,7 @@ export default function Customers() {
 	return (
 		<div className='w-full'>
 			<main className='min-h-[90vh] flex items-start'>
-				<SideNav/>
+			
 
 				<div className='md:w-5/6 w-full h-full p-6'>
 					<h2 className='text-2xl font-bold'>Customers</h2>
@@ -78,7 +77,7 @@ export default function Customers() {
 					<form className='w-full' onSubmit={handleAddCustomer} method='POST'>
 						<div className='w-full flex items-center space-x-4  mb-3'>
 							<section className='w-1/2'>
-								<Label className=''>Customer&apos;s Name</Label>
+								<Label className='text-lg'>Customer&apos;s Name</Label>
 								<Input
 									type='text'
 									className='w-full p-2 border border-gray-200 rounded-sm text-white'
@@ -90,7 +89,7 @@ export default function Customers() {
 							</section>
 
 							<section className='w-1/2'>
-								<Label className=''>Email Address</Label>
+								<Label className='text-lg'>Email Address</Label>
 								<Input
 									type='email'
 									className='w-full p-2 border border-gray-200 rounded-sm text-white'
@@ -101,7 +100,7 @@ export default function Customers() {
 								/>
 							</section>
 						</div>
-						<Label htmlFor='address'>Billing Address</Label>
+						<Label htmlFor='address' className='text-lg'>Billing Address</Label>
 						<Textarea
 							name='address'
 							id='address'

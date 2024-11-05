@@ -124,7 +124,7 @@ export default function Dashboard() {
 	return (
 		<div className='w-full'>
 			<main className='min-h-[90vh] flex items-start'>
-				<SideNav />
+				
 				{!bankInfoExists ? (
 					<div className='md:w-5/6 w-full h-screen flex-col p-6 flex items-center justify-center'>
 						<p className='text-lg font-bold mb-3'>

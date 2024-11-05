@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getDBVersion } from "./db";
+import {User} from "@nextui-org/user";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
@@ -130,6 +130,7 @@ export default async function Home() {
       </div>
       </div>
       </section>
+      <br />
       <section>
         <div className="dev">
         <BlurIn word="Welp is currently in testing stage. Please test the website out and let me know if you find any bugs or issues. You can also contribute to the project by submitting a pull
@@ -148,11 +149,7 @@ export default async function Home() {
       <Section>
   <Row>
     <Column colSpan={4}>
-      <Img
-        alt="React Email logo"
-        height="42"
-        src="https://react.email/static/logo-without-background.png"
-      />
+      
       <Text
         style={{
           marginTop: 8,
@@ -174,61 +171,14 @@ export default async function Home() {
           color: "rgb(107,114,128)",
         }}
       >
-        Nothing to see here
+        Copyright 2024
       </Text>
     </Column>
     <Column
       align="left"
       style={{ display: "table-cell", verticalAlign: "bottom" }}
     >
-      <Row
-        style={{
-          display: "table-cell",
-          height: 44,
-          width: 56,
-          verticalAlign: "bottom",
-        }}
-      >
-        <Column style={{ paddingRight: 8 }}>
-          <Link href="#">
-            <Img
-              alt="Facebook"
-              height="36"
-              src="https://react.email/static/facebook-logo.png"
-              width="36"
-            />
-          </Link>
-        </Column>
-        <Column style={{ paddingRight: 8 }}>
-          <Link href="#">
-            <Img alt="X" height="36" src="https://react.email/static/x-logo.png" width="36" />
-          </Link>
-        </Column>
-        <Column>
-          <Link href="#">
-            <Img
-              alt="Instagram"
-              height="36"
-              src="https://react.email/static/instagram-logo.png"
-              width="36"
-            />
-          </Link>
-        </Column>
-      </Row>
-      <Row>
-        <Text
-          style={{
-            marginTop: 8,
-            marginBottom: 8,
-            fontSize: 16,
-            lineHeight: "48px",
-            fontWeight: 600,
-            color: "rgb(107,114,128)",
-          }}
-        >
-          Created by Oasis
-        </Text>
-        <Text
+      <Text
           style={{
             marginTop: 4,
             marginBottom: "0px",
@@ -238,8 +188,22 @@ export default async function Home() {
             color: "rgb(107,114,128)",
           }}
         >
-          The all in one platform
+          Developed by
         </Text>
+      
+      <Row>
+      <User   
+      name="Aryan Kapoor"
+      description={(
+        <Link href="https://www.aryankap.com">
+          @Aryankpoor
+        </Link>
+      )}
+      avatarProps={{
+        src: "https://avatars.githubusercontent.com/u/64773763?s=400&u=44302421b1039d09aa788db230c5e4e3f646d234&v=4"
+      }}
+    />
+        
       </Row>
     </Column>
   </Row>

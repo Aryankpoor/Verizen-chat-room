@@ -1,6 +1,5 @@
 import {
 	AlertDialog,
-	AlertDialogAction,
 	AlertDialogCancel,
 	AlertDialogContent,
 	AlertDialogDescription,
@@ -40,21 +39,21 @@ export default function CustomersTable({
 		<table>
 			<thead>
 				<tr>
-				<th>Name</th>
-				<th>Email</th>
-					<th>Action</th>
-					</tr>
+					<th className='text-lg'>Name&emsp;&emsp;</th>
+					<th className='text-lg'>Email&emsp;&emsp;</th>
+					<th className='text-lg'>Action</th>
+				</tr>
 			</thead>
 
 			<tbody>
 			{customers.length > 0 && customers.map((customer) => (
 					<tr key={customer.id}>
-						<td className='text-sm'>{customer.name}</td>
-						<td className='text-sm'>{customer.email}</td>
-						<td className='text-sm'>
+						<td className='text-lg'>{customer.name}&emsp;&emsp;</td>
+						<td className='text-lg'>{customer.email}&emsp;&emsp;</td>
+						<td className='text-lg'>
 						<AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className='p-2 bg-red-500 text-red-50  text-xs rounded-sm' onClick={()=> deleteCustomer(customer.id)}>
+        <Button className='p-2 bg-red-500 text-red-50  text-lg rounded-sm' onClick={()=> deleteCustomer(customer.id)}>
 								Delete
 							</Button>
       </AlertDialogTrigger>
