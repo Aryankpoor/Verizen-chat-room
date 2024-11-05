@@ -1,8 +1,23 @@
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+
+
 interface Customer {
 	name: string;
 	email: string;
 	id: number;
 }
+
 
 export default function CustomersTable({
 	customers,
@@ -16,7 +31,7 @@ export default function CustomersTable({
 				method: "DELETE",
 			});
 			const response = await request.json();
-			alert(response.message);
+			console.log(response.message);
 		} catch (err) {
 			console.log(err);
 		}
@@ -37,9 +52,25 @@ export default function CustomersTable({
 						<td className='text-sm'>{customer.name}</td>
 						<td className='text-sm'>{customer.email}</td>
 						<td className='text-sm'>
-							<button className='p-2 bg-red-500 text-red-50  text-xs rounded-sm' onClick={()=> deleteCustomer(customer.id)}>
+						<AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button className='p-2 bg-red-500 text-red-50  text-xs rounded-sm' onClick={()=> deleteCustomer(customer.id)}>
 								Delete
-							</button>
+							</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Customer Deleted Successfully</AlertDialogTitle>
+          <AlertDialogDescription>
+			The change might be visible after refreshing the page.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Continue</AlertDialogCancel>
+          
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
 						</td>
 					</tr>
 				))}

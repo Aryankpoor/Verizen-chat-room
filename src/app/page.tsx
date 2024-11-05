@@ -226,7 +226,7 @@ export default async function Home() {
             color: "rgb(107,114,128)",
           }}
         >
-          123 Main Street Anytown, CA 12345
+          Created by Oasis
         </Text>
         <Text
           style={{
@@ -238,7 +238,7 @@ export default async function Home() {
             color: "rgb(107,114,128)",
           }}
         >
-          mail@example.com +123456789
+          The all in one platform
         </Text>
       </Row>
     </Column>

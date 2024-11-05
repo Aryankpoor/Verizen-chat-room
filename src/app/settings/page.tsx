@@ -13,6 +13,7 @@ import {
 	SelectTrigger,
 	SelectValue,
   } from "@/components/ui/select"
+  import PulsatingButton from "@/components/ui/pulsating-button";
 
 export default function Settings() {
 	const { isLoaded, isSignedIn, user } = useUser();
@@ -180,12 +181,12 @@ export default function Settings() {
 								<option value='£'>GBP</option>
 							</select>
 							<div className='flex items-center justify-end'>
-								<button
+								<PulsatingButton
 									type='submit'
 									className='bg-blue-500 text-white p-2 w-[200px] rounded'
 								>
 									Update Bank Info
-								</button>
+								</PulsatingButton>
 							</div>
 						</form>
 					</div>
