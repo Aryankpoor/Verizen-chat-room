@@ -1,3 +1,4 @@
+"use client";
 import type { Metadata } from "next";
 import { PT_Sans } from "next/font/google";
 import React from "react";
@@ -15,6 +16,8 @@ import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import AnimatedGradientText from "@/components/ui/animated-gradient-text";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import { usePathname } from 'next/navigation';
+
 // Define ListItem component
 const ListItem = ({
   children,
@@ -40,16 +43,13 @@ const ListItem = ({
 
 const inter = PT_Sans({ weight: ["400", "700"], subsets: ["latin"] });
 
-export const metadata: Metadata = {
-	title: "Welp - Create Beautiful Invoices",
-	description: "Time to bill your customers",
-};
-
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const pathname = usePathname();
+	const hideButtonOnPath = '/';
 	return (
 		<ClerkProvider appearance={{
 			baseTheme: neobrutalism,
@@ -60,7 +60,7 @@ export default function RootLayout({
 						<Link href='/' className='text-xl font-extrabold text-blue-700'>
 							WELP
 						</Link>
-					
+						{pathname !== hideButtonOnPath && (
 						<NavigationMenu.Root className="relative z-10 flex w-screen justify-center">
 			<NavigationMenu.List className="center m-0 flex list-none rounded-md bg-white p-1 shadow-[0_2px_10px] shadow-blackA4">
 			<Link href="/dashboard">
@@ -103,7 +103,7 @@ export default function RootLayout({
 				<NavigationMenu.Viewport className="relative mt-2.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
 			</div>
 		</NavigationMenu.Root>
-
+)}
 						<div className='flex items-center gap-5 name'>
 						<div className="z-10 flex min-h-64 items-center justify-center">
 						<Link href="https://github.com/Aryankpoor/welp">

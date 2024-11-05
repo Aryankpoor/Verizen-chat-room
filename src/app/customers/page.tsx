@@ -69,6 +69,7 @@ export default function Customers() {
 	return (
 		<div className='w-full'>
 			<main className='min-h-[90vh] flex items-start'>
+				<SideNav/>
 
 				<div className='md:w-5/6 w-full h-full p-6'>
 					<h2 className='text-2xl font-bold'>Customers</h2>
