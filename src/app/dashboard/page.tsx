@@ -104,7 +104,7 @@ import {
     right: 15%;
     animation-delay: .3s;
   }`;
-  
+
 export default function Dashboard() {
 	const { isLoaded, isSignedIn, user } = useUser();
 	const [itemList, setItemList] = useState<Item[]>([]);
@@ -168,8 +168,7 @@ export default function Dashboard() {
 		setItemQuantity(0);
 	};
 
-
-
+	
 	const getTotalAmount = () => {
 		let total = 0;
 		itemList.forEach((item) => {

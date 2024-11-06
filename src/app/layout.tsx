@@ -86,6 +86,13 @@ export default function RootLayout({
 						</NavigationMenu.Trigger>
 				</NavigationMenu.Item>
 				</Link>
+				<Link href="/email">
+				<NavigationMenu.Item>
+				<NavigationMenu.Trigger className="group text-black flex select-none items-center justify-between gap-0.5 rounded px-3 py-2 text-[15px] font-medium leading-none text-violet11 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-violet7">
+						Mail
+						</NavigationMenu.Trigger>
+				</NavigationMenu.Item>
+				</Link>
 
                 <Link href="/settings">
 				<NavigationMenu.Item>
