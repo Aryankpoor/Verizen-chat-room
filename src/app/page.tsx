@@ -223,11 +223,11 @@ export default function LandingPage() {
                   </p>
                   <CardTitle className="text-white">Shadcn</CardTitle>
                   <p className="leading-7 text-gray-300">
-                    Welp uses the <Link href="https://ui.shadcn.com/">shadcn UI</Link> component library for, well.... basically everything!
+                    Welp uses the <Link href="https://ui.shadcn.com/" className="text-[#faee1c]">shadcn UI</Link> component library for, well.... basically everything!
                   </p>
                   <CardTitle className="text-white">MagicUI</CardTitle>
                   <p className="leading-7 text-gray-300">
-                    What makes Welp special is that it's UI is built on both Shadcn and <Link href="https://magicui.design/">MagicUI</Link>, two different component libraries. Ironically, MagicUI is built on Shadcn.
+                    What makes Welp special is that it's UI is built on both Shadcn and <Link className="text-[#faee1c]" href="https://magicui.design/">MagicUI</Link>, two different component libraries. Ironically, MagicUI is built on Shadcn.
                   </p>
                   <CardTitle className="text-white">Typescript</CardTitle>
                   <p className="leading-7 text-gray-300">
@@ -248,15 +248,15 @@ export default function LandingPage() {
                 <CardHeader>
                   <CardTitle className="text-white">Neon</CardTitle>
                    <p className="leading-7 text-gray-300">
-                    Welp is built on Postgres used by <Link href="https://neon.tech/">Neon</Link> to store all the invoices and customer data.
+                    Welp is built on Postgres used by <Link href="https://neon.tech/" className="text-[#faee1c]">Neon</Link> to store all the invoices and customer data.
                   </p>
                   <CardTitle className="text-white">Clerk</CardTitle>
                    <p className="leading-7 text-gray-300">
-                    All users are stored on <Link href="https://clerk.com/">Clerk</Link> which provides easy account management system for users within Welp.
+                    All users are stored on <Link href="https://clerk.com/" className="text-[#faee1c]">Clerk</Link> which provides easy account management system for users within Welp.
                   </p>
                   <CardTitle className="text-white">Resend</CardTitle>
                    <p className="leading-7 text-gray-300">
-                   Welp uses React <Link href="https://resend.com/emails">Resend</Link> which enables users to send invoices to customers directly from Welp
+                   Welp uses React <Link href="https://resend.com/emails" className="text-[#faee1c]">Resend</Link> which enables users to send invoices to customers directly from Welp
                   </p>
                 </CardHeader>
                 <CardContent>
@@ -299,10 +299,10 @@ export default function LandingPage() {
                      Wow, you are a tough cookie. Maybe a nice email will convince ya. Don't worry, you are not subscribing to any newsletters!
                   </p>
                   <br />
-              <form className="flex gap-4">
+              <form className="flex gap-4" action="https://www.formbackend.com/f/8d06fec7a49034ca" method="POST" >
                 <div className="flex-grow">
                   <Label htmlFor="email" className="sr-only text-xl">Email</Label>
-                  <Input id="email" placeholder="Enter your email" type="email" className="text-xl bg-gray-800 text-white border-gray-700" />
+                  <Input id="email" placeholder="Enter your email" type="email" className="text-xl bg-gray-800 text-white border-gray-700" name="user-email"/>
                 </div>
               
                 <Button type="submit" className="text-xl bg-gray-400">Go!</Button>
@@ -321,7 +321,7 @@ export default function LandingPage() {
                 <AvatarImage src="https://avatars.githubusercontent.com/u/64773763?s=400&u=44302421b1039d09aa788db230c5e4e3f646d234&v=4" alt="Aryan Kapoor" />
                 <AvatarFallback>AK</AvatarFallback>
               </Avatar>
-              <p className="text-2xl">Developed by Aryankpoor</p>
+              <p><Link href="https://www.aryankap.com">Aryan Kapoor</Link></p>
             </div>
             <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
               <Card className="bg-gray-800 border-gray-700 w-full md:w-auto max-w-sm">
