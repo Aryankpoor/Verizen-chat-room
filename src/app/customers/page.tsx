@@ -1,129 +1,216 @@
-"use client";
-import CustomersTable from "../components/CustomersTable";
-import { useCallback, useEffect, useState } from "react";
-import { useUser } from "@clerk/nextjs";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+'use client'
+
+import { useCallback, useEffect, useState } from "react"
+import { useUser } from "@clerk/nextjs"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Loader2, Trash2, UserPlus, Users } from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
-export default function Customers() {
-	const { isLoaded, isSignedIn, user } = useUser();
-	const [customerName, setCustomerName] = useState<string>("");
-	const [customerEmail, setCustomerEmail] = useState<string>("");
-	const [customerAddress, setCustomerAddress] = useState<string>("");
-	const [loading, setLoading] = useState<boolean>(false);
-	const [customers, setCustomers] = useState([]);
+interface Customer {
+  id: string
+  name: string
+  email: string
+  address: string
+}
 
-	const fetchCustomers = useCallback(async () => {
-		try {
-			const res = await fetch(`/api/customers?userID=${user?.id}`);
-			const data = await res.json();
-			setCustomers(data.customers);
-		} catch (err) {
-			console.log(err);
-		}
-	}, [user]);
+export default function Component() {
+  const { isLoaded, isSignedIn, user } = useUser()
+  const [customerName, setCustomerName] = useState("")
+  const [customerEmail, setCustomerEmail] = useState("")
+  const [customerAddress, setCustomerAddress] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [customers, setCustomers] = useState<Customer[]>([])
+  const [alert, setAlert] = useState<{ type: 'success' | 'error', message: string } | null>(null)
 
-	useEffect(() => {
-		if (user) {
-			fetchCustomers();
-		}
-	}, [fetchCustomers, user]);
+  const fetchCustomers = useCallback(async () => {
+    if (!user?.id) return
+    try {
+      const res = await fetch(`/api/customers?userID=${user.id}`)
+      const data = await res.json()
+      setCustomers(data.customers)
+    } catch (err) {
+      console.error("Failed to fetch customers:", err)
+      setAlert({ type: 'error', message: 'Failed to fetch customers. Please try again.' })
+    }
+  }, [user])
 
-	const createCustomer = async () => {
-		setLoading(true);
-		try {
-			const request = await fetch("/api/customers", {
-				method: "POST",
-				body: JSON.stringify({
-					userID: user?.id,
-					customerName,
-					customerEmail,
-					customerAddress,
-				}),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const response = await request.json();
-			console.log(response.message);
-			setCustomerAddress("");
-			setCustomerEmail("");
-			setCustomerName("");
-			setLoading(false);
-		} catch (err) {
-			console.log(err);
-		}
-	};
+  useEffect(() => {
+    if (user) {
+      fetchCustomers()
+    }
+  }, [fetchCustomers, user])
 
-	const handleAddCustomer = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		createCustomer();
-	};
+  const createCustomer = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const response = await fetch("/api/customers", {
+        method: "POST",
+        body: JSON.stringify({
+          userID: user?.id,
+          customerName,
+          customerEmail,
+          customerAddress,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const data = await response.json()
+      setAlert({ type: 'success', message: data.message })
+      setCustomerName("")
+      setCustomerEmail("")
+      setCustomerAddress("")
+      fetchCustomers()
+    } catch (err) {
+      console.error("Failed to create customer:", err)
+      setAlert({ type: 'error', message: 'Failed to create customer. Please try again.' })
+    } finally {
+      setLoading(false)
+    }
+  }
 
-	if (!isLoaded || !isSignedIn) {
-		return <p>Loading...</p>;
-	}
+  const deleteCustomer = async (customerId: string) => {
+    try {
+      const response = await fetch(`/api/customers/${customerId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userID: user?.id }),
+      })
+      const data = await response.json()
+      setAlert({ type: 'success', message: data.message })
+      fetchCustomers()
+    } catch (err) {
+      console.error("Failed to delete customer:", err)
+      setAlert({ type: 'error', message: 'Failed to delete customer. Please try again.' })
+    }
+  }
 
-	return (
-		<div className='w-full'>
-			<main className='min-h-[90vh] flex items-start'>
-			
+  if (!isLoaded || !isSignedIn) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader2 className="w-6 h-6 animate-spin" />
+      </div>
+    )
+  }
 
-				<div className='md:w-5/6 w-full h-full p-6'>
-					<h2 className='text-2xl font-bold'>Customers</h2>
-					<p className='opacity-70 mb-4'>Create and view all your customers</p>
+  return (
+    <div className="container mx-auto py-8 px-4">
+      <div className="grid gap-8 md:grid-cols-2">
+        <Card className="md:col-span-1">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center gap-2">
+              <UserPlus className="w-6 h-6" />
+              Add New Customer
+            </CardTitle>
+            <CardDescription>Enter customer details to add them to your list</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {alert && (
+              <Alert 
+                variant={alert.type === 'error' ? "destructive" : "default"} 
+                className={`mb-6 ${alert.type === 'success' ? 'bg-green-100 border-green-500 text-green-800' : ''}`}
+              >
+                <AlertTitle>{alert.type === 'error' ? "Error" : "Success"}</AlertTitle>
+                <AlertDescription>{alert.message}</AlertDescription>
+              </Alert>
+            )}
+            <form onSubmit={createCustomer} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="customerName">Customer&apos;s Name</Label>
+                <Input
+                  id="customerName"
+                  value={customerName}
+                  onChange={(e) => setCustomerName(e.target.value)}
+                  placeholder="Enter customer name"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="customerEmail">Email Address</Label>
+                <Input
+                  id="customerEmail"
+                  type="email"
+                  value={customerEmail}
+                  onChange={(e) => setCustomerEmail(e.target.value)}
+                  placeholder="Enter email address of customer"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="customerAddress">Billing Address</Label>
+                <Textarea
+                  id="customerAddress"
+                  value={customerAddress}
+                  onChange={(e) => setCustomerAddress(e.target.value)}
+                  placeholder="Enter customer's billing address"
+                  required
+                />
+              </div>
+              <Button type="submit" disabled={loading} className="w-full">
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Adding Customer
+                  </>
+                ) : (
+                  "Add Customer"
+                )}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
 
-					<form className='w-full' onSubmit={handleAddCustomer} method='POST'>
-						<div className='w-full flex items-center space-x-4  mb-3'>
-							<section className='w-1/2'>
-								<Label className='text-lg'>Customer&apos;s Name</Label>
-								<Input
-									type='text'
-									className='w-full p-2 border border-gray-200 rounded-sm text-white'
-									value={customerName}
-									placeholder="Enter customer name"
-									required
-									onChange={(e) => setCustomerName(e.target.value)}
-								/>
-							</section>
-
-							<section className='w-1/2'>
-								<Label className='text-lg'>Email Address</Label>
-								<Input
-									type='email'
-									className='w-full p-2 border border-gray-200 rounded-sm text-white'
-									value={customerEmail}
-									placeholder="Enter email address of customer"
-									onChange={(e) => setCustomerEmail(e.target.value)}
-									required
-								/>
-							</section>
-						</div>
-						<Label htmlFor='address' className='text-lg'>Billing Address</Label>
-						<Textarea
-							name='address'
-							id='address'
-							rows={3}
-							className='w-full p-2 border border-gray-200 rounded-sm text-white'
-							value={customerAddress}
-							onChange={(e) => setCustomerAddress(e.target.value)}
-							placeholder="Enter customer's billing address"
-							required
-						/>
-						<br />
-
-						<button
-							className='bg-blue-500 text-white p-2 rounded-md mb-6'
-							disabled={loading}
-						>
-							{loading ? "Adding..." : "Add Customer"}
-						</button>
-					</form>
-
-					<CustomersTable customers={customers} />
-				</div>
-			</main>
-		</div>
-	);
+        <Card className="md:col-span-1">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold flex items-center gap-2">
+              <Users className="w-6 h-6" />
+              Customer List
+            </CardTitle>
+            <CardDescription>View and manage your customers</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Address</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {customers.map((customer) => (
+                    <TableRow key={customer.id}>
+                      <TableCell className="font-medium">{customer.name}</TableCell>
+                      <TableCell>{customer.email}</TableCell>
+                      <TableCell>{customer.address}</TableCell>
+                      <TableCell className="text-right">
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          onClick={() => deleteCustomer(customer.id)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                          <span className="sr-only">Delete customer</span>
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
 }

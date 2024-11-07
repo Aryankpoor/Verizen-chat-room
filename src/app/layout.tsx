@@ -57,7 +57,7 @@ export default function RootLayout({
 			<html lang='en'>
 				<body className={inter.className}>
 					<nav className='flex justify-between items-center h-[10vh] px-8 border-b-[1px]'>
-						<Link href='/' className='text-xl font-extrabold text-blue-700'>
+						<Link href='/' className='text-3xl font-extrabold text-blue-700'>
 							WELP
 						</Link>
 						{pathname !== hideButtonOnPath && (
@@ -71,6 +71,18 @@ export default function RootLayout({
 					</NavigationMenu.Trigger>
 					
 				</NavigationMenu.Item></Link>
+
+				
+
+				<Link href="/mail">
+				<NavigationMenu.Item>
+					<NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-0.5 rounded px-3 py-2 text-[15px] font-medium leading-none text-violet11 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-violet7 text-black">
+					Mail
+						
+					</NavigationMenu.Trigger>
+					
+				</NavigationMenu.Item></Link>
+
 				<NavigationMenu.Item>
 					<NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-0.5 rounded px-3 py-2 text-[15px] font-medium leading-none text-violet11 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-violet7 text-black">
 						<Link href="/history">My Invoices</Link>
@@ -86,13 +98,7 @@ export default function RootLayout({
 						</NavigationMenu.Trigger>
 				</NavigationMenu.Item>
 				</Link>
-				<Link href="/email">
-				<NavigationMenu.Item>
-				<NavigationMenu.Trigger className="group text-black flex select-none items-center justify-between gap-0.5 rounded px-3 py-2 text-[15px] font-medium leading-none text-violet11 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-violet7">
-						Mail
-						</NavigationMenu.Trigger>
-				</NavigationMenu.Item>
-				</Link>
+				
 
                 <Link href="/settings">
 				<NavigationMenu.Item>
@@ -133,9 +139,7 @@ export default function RootLayout({
 							</SignedOut>
 							{/*-- if user is signed in --*/}
 							<SignedIn>
-								<Link href='/dashboard' className=''>
-									Dashboard
-								</Link>
+								
 								<UserButton/>
 							</SignedIn>
 						</div>
