@@ -33,7 +33,7 @@ The dashboard also allows you to save your invoices forever and you can easily p
 
 ## Customers
 Welp also allows you to manage customers. Currently, we are not allowing deletion of customers.
-![image](https://github.com/user-attachments/assets/6caedf7e-7643-4544-a701-8c066bd9f439)
+![image](https://github.com/user-attachments/assets/db6be3e8-f9dc-4894-92c0-cac52ce8291a)
 
 
 ## Some other things? I guess
