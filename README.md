@@ -5,7 +5,7 @@ Making invoices has never been easier! Create dynamic invoices in a couple of cl
 Visit [Welp dashboard](https://welp-wiki.vercel.app) and sign up using any of the supported platforms 
 ![image](https://github.com/user-attachments/assets/932922e5-7c87-4688-bd9f-9ae9f7747ee7)
 
-#### Welp only supports Apple, Google and email address for authentication currently, but there are plans to add slack in future too!
+#### Welp supports Apple, Google, Slack and email address for authentication 
 ![image](https://github.com/user-attachments/assets/342babd7-6412-4cde-882e-dff7afee9d9d)
 
 
@@ -33,7 +33,7 @@ The dashboard also allows you to save your invoices forever and you can easily p
 
 ## Customers
 Welp also allows you to manage customers. Currently, we are not allowing deletion of customers.
-![image](https://github.com/user-attachments/assets/6caedf7e-7643-4544-a701-8c066bd9f439)
+![image](https://github.com/user-attachments/assets/db6be3e8-f9dc-4894-92c0-cac52ce8291a)
 
 
 ## Some other things? I guess
