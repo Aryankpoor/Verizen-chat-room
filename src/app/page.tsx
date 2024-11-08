@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import BlurIn from "@/components/ui/blur-in";
 import HyperText from "@/components/ui/hyper-text"
+import { Analytics } from '@vercel/analytics/react';
 
 export default function LandingPage() {
   return (
@@ -353,6 +354,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+        <Analytics />
       </footer>
     </div>
   )
