@@ -2,7 +2,7 @@
 Making invoices has never been easier! Create dynamic invoices in a couple of clicks. Your Welp dashboard includes a customer management system to directly send invoices to customers!
 
 ## How to Use
-Visit [Welp dashboard](https://welp-wiki.vercel.app) and sign up using any of the supported platforms 
+Visit [Welp dashboard](https://welp.it.com) and sign up using any of the supported platforms 
 ![image](https://github.com/user-attachments/assets/932922e5-7c87-4688-bd9f-9ae9f7747ee7)
 
 #### Welp supports Apple, Google, Slack and email address for authentication 
