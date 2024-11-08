@@ -11,7 +11,6 @@ import {
 } from "@clerk/nextjs";
 import Link from "next/link";
 import "./globals.css";
-import { neobrutalism } from '@clerk/themes'
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import AnimatedGradientText from "@/components/ui/animated-gradient-text";
@@ -51,9 +50,7 @@ export default function RootLayout({
 	const pathname = usePathname();
 	const hideButtonOnPath = '/';
 	return (
-		<ClerkProvider appearance={{
-			baseTheme: neobrutalism,
-		  }}>
+		<ClerkProvider>
 			<html lang='en'>
 				<body className={inter.className}>
 					<nav className='flex justify-between items-center h-[10vh] px-8 border-b-[1px]'>
