@@ -24,13 +24,22 @@ As for the invoice, you can add:
 3. Item price/rate/quantity
 **Note**: There is no limit of number of items you can add.
 
-![dashboard](https://github.com/user-attachments/assets/7a0a512e-d35a-47fa-814f-e3f896626f20)
-![image](https://github.com/user-attachments/assets/74d17463-c2bc-4445-bb55-210ce1aed036)
+![dashboard](https://github.com/user-attachments/assets/95b1b10b-110b-4c5d-895e-5a6d4bf645d1)
+<img width="934" alt="image" src="https://github.com/user-attachments/assets/dc5cade3-09e4-4941-8a1f-c5d9b216a718">
+
 
 The dashboard also allows you to save your invoices forever and you can easily pull them up in the history tab, download them or email them to your customer directly from the dashboard.
 
+
+## Customers
+Welp also allows you to manage customers. Currently, we are not allowing deletion of customers.
+![image](https://github.com/user-attachments/assets/6caedf7e-7643-4544-a701-8c066bd9f439)
+
+
 ## Some other things? I guess
 You can also manage your account in the account details found in the top right corner of the website. In the account settings, you can view the devices your account was logged into so that you can keep track of sessions if multiple people are working on the same account. You can change username, profile photo, add or remove email addresses and connect your account to multiple authentications and last but not the least, manage passwords.
+
+There is also organization support added now. You can now create organizations or teams of upto 5 members! This limit is subject to increase in future.
 
 If you ever want to delete your account, there is an option for that too! But please do let me know if you don't like something about the website or feel the need for a new feature and I will definitely work on adding that! 
 Another thing I am currently working on is multiple accounts working B2B and as an organisation, allowing organization accounts and organization managers being able to add multiple people to the organization, allowing a collaborative environment.
