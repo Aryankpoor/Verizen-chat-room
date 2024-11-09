@@ -144,7 +144,11 @@ export default function Component() {
                     <SelectItem value="$">USD</SelectItem>
                     <SelectItem value="€">EUR</SelectItem>
                     <SelectItem value="£">GBP</SelectItem>
-					<SelectItem value="₹">INR</SelectItem>
+                    <SelectItem value="CA$">CAD</SelectItem>
+					          <SelectItem value="₹">INR</SelectItem>
+                    <SelectItem value="AU$">AUD</SelectItem>
+                    <SelectItem value="¥">CNY</SelectItem>
+                    <SelectItem value="JP¥">JPY</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

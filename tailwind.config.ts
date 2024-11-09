@@ -61,6 +61,7 @@ const config: Config = {
   			shine: 'shine var(--duration) infinite linear',
   			'background-position-spin': 'background-position-spin 3000ms infinite alternate',
   			gradient: 'gradient 8s linear infinite',
+			'gradient-x': 'gradient-x 15s ease infinite',
   			pulse: 'pulse var(--duration) ease-out infinite'
   		},
   		keyframes: {
@@ -69,6 +70,16 @@ const config: Config = {
   					'offset-distance': '100%'
   				}
   			},
+			'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
   			shine: {
   				'0%': {
   					'background-position': '0% 0%'

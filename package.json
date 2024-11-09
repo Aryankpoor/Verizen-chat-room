@@ -47,10 +47,13 @@
     "cobe": "^0.6.3",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.35.2",
+    "emailjs-mime-parser": "^2.0.7",
     "framer-motion": "^11.11.11",
     "franken-ui": "^1.1.0",
     "googleapis": "^144.0.0",
+    "imap": "^0.8.19",
     "lucide-react": "^0.453.0",
+    "mailparser": "^3.7.1",
     "next": "14.2.15",
     "next-auth": "^4.24.10",
     "next-themes": "^0.3.0",
@@ -67,6 +70,8 @@
     "touch": "^3.1.1"
   },
   "devDependencies": {
+    "@types/imap": "^0.8.42",
+    "@types/mailparser": "^3.4.5",
     "@types/node": "^20.17.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
