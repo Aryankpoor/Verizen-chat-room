@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import SearchableSelect from "@/components/ui/searchable-select"
 import {
   Select,
   SelectContent,
@@ -170,22 +171,12 @@ export default function Dashboard() {
                 <div className="space-y-2">
                   <Label htmlFor="customer">Customer</Label>
                   {customers.length > 0 ? (
-                    <Select
-                      required
-                      value={customer}
-                      onValueChange={(value) => setCustomer(value)}
-                    >
-                      <SelectTrigger id="customer">
-                        <SelectValue placeholder="Select Customer" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {customers.map((customer: any) => (
-                          <SelectItem key={customer.id} value={customer.name}>
-                            {customer.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      <SearchableSelect
+                        options={customers}
+                        value={customer}
+                        onValueChange={(value) => setCustomer(value)}
+                        placeholder="Select Customer"
+                      />
                   ) : (
                     <p className="text-sm text-destructive">
                       No customers found. Please add a customer.

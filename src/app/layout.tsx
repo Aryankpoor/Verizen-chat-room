@@ -48,7 +48,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const pathname = usePathname();
-	const hideButtonOnPath = '/dashboard';
+	const hideButtonOnPath = '/';
 	return (
 		<ClerkProvider>
 			<html lang='en'>
