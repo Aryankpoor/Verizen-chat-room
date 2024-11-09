@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -20,6 +20,7 @@ interface SearchableSelectProps {
 export default function SearchableSelect({ options, value, onValueChange, placeholder = "Select an option" }: SearchableSelectProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const filteredOptions = options.filter(option =>
     option.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -28,6 +29,12 @@ export default function SearchableSelect({ options, value, onValueChange, placeh
   const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
   }, [])
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [isOpen])
 
   return (
     <div className="relative">
@@ -38,6 +45,7 @@ export default function SearchableSelect({ options, value, onValueChange, placeh
         onValueChange={(newValue) => {
           onValueChange(newValue)
           setIsOpen(false)
+          setSearchTerm('')
         }}
       >
         <SelectTrigger className="w-full" onClick={() => setIsOpen(true)}>
@@ -46,19 +54,22 @@ export default function SearchableSelect({ options, value, onValueChange, placeh
         <SelectContent>
           <div className="p-2">
             <Input
+              ref={inputRef}
               placeholder="Search..."
               value={searchTerm}
               onChange={handleSearch}
               className="mb-2"
+              onKeyDown={(e) => e.stopPropagation()}
             />
           </div>
-          {filteredOptions.map((option) => (
-            <SelectItem key={option.id} value={option.name}>
-              {option.name}
-            </SelectItem>
-          ))}
-          {filteredOptions.length === 0 && (
-            <div className="p-2 text-sm text-gray-500">No options found</div>
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option) => (
+              <SelectItem key={option.id} value={option.name}>
+                {option.name}
+              </SelectItem>
+            ))
+          ) : (
+            <div className="p-2 text-sm text-gray-500">Whoops! Nothing found....</div>
           )}
         </SelectContent>
       </Select>
