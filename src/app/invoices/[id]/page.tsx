@@ -9,6 +9,26 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Download, Send } from "lucide-react"
 
+interface Customer {
+  name: string
+  address: string
+  email: string
+}
+
+interface BankInfo {
+  account_name: string
+  account_number: string
+  currency: string
+}
+
+interface Invoice {
+  id: string
+  title: string
+  total_amount: number
+  items: string
+  created_at: string
+}
+
 const formatDateString = (dateString: string): string => {
   const date = new Date(dateString)
   const day = date.getDate()
@@ -67,7 +87,7 @@ export default function Invoices() {
         },
         body: JSON.stringify({
           invoiceID: id,
-          items: invoice?.items, // Send items as is, don't stringify here
+          items: invoice?.items,
           title: invoice?.title,
           amount: invoice?.total_amount,
           customerEmail: customer?.email,
@@ -101,18 +121,24 @@ export default function Invoices() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Invoice #{id}</h1>
         <div className="flex space-x-4">
-          <Button onClick={() => reactToPrintFn()} className="flex items-center">
-            <Download className="mr-2 h-4 w-4" />
-            Download
-          </Button>
-          <Button
-            onClick={handleSendInvoice}
-            disabled={disabled}
-            className="flex items-center"
+          <button
+            className="p-3 text-blue-50 bg-cyan-600 rounded-md flex items-center"
+            onClick={() => reactToPrintFn()}
           >
-            <Send className="mr-2 h-4 w-4" />
+            <Download className="mr-2 h-5 w-5" />
+            Download
+          </button>
+          <button
+            className="p-3 text-blue-50 bg-green-500 rounded-md flex items-center"
+            onClick={() => {
+              setDisabled(true)
+              handleSendInvoice()
+            }}
+            disabled={disabled}
+          >
+            <Send className="mr-2 h-5 w-5" />
             {disabled ? "Sending..." : "Send"}
-          </Button>
+          </button>
         </div>
       </div>
       <Card className="w-full mx-auto shadow-lg" ref={contentRef}>
@@ -121,7 +147,7 @@ export default function Invoices() {
             <div>
               <h2 className="text-xl font-semibold mb-2">From:</h2>
               <p>{bankInfo?.account_name}</p>
-              <p>Date: {formatDateString(invoice?.created_at!)}</p>
+              <p>Date: {invoice?.created_at ? formatDateString(invoice.created_at) : ''}</p>
             </div>
             <div>
               <h2 className="text-xl font-semibold mb-2">To:</h2>
@@ -135,7 +161,7 @@ export default function Invoices() {
             <p>Subject: {invoice?.title}</p>
             <p className="text-2xl font-bold mt-2">
               Total: {bankInfo?.currency}
-              {Number(invoice?.total_amount).toLocaleString()}
+              {invoice?.total_amount ? Number(invoice.total_amount).toLocaleString() : ''}
             </p>
           </div>
           {invoice?.items && <InvoiceTable itemList={JSON.parse(invoice.items)} />}
