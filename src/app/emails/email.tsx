@@ -64,11 +64,15 @@ import {
                               <Heading as="h3" className="text-black text-[18px] font-bold mt-[24px]">
                                   Items:
                               </Heading>
-                              {items && items.map((item, index) => (
+                              {Array.isArray(items) ? items.map((item, index) => (
                                   <Text key={index} className="text-black text-[14px] leading-[24px]">
                                       {item.cost} x {item.quantity} = {item.price}
                                   </Text>
-                              ))}
+                              )) : (
+                                  <Text className="text-black text-[14px] leading-[24px]">
+                                      No items available
+                                  </Text>
+                              )}
                           </Section>
                       </Container>
                   </Body>

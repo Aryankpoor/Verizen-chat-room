@@ -59,7 +59,7 @@ export default function Invoices() {
 
   const handleSendInvoice = async () => {
     try {
-      setDisabled(true);
+      setDisabled(true)
       const request = await fetch("/api/invoices/send", {
         method: "POST",
         headers: {
@@ -67,7 +67,7 @@ export default function Invoices() {
         },
         body: JSON.stringify({
           invoiceID: id,
-          items: JSON.stringify(invoice?.items),
+          items: invoice?.items, // Send items as is, don't stringify here
           title: invoice?.title,
           amount: invoice?.total_amount,
           customerEmail: customer?.email,
@@ -77,20 +77,16 @@ export default function Invoices() {
           accountNumber: bankInfo?.account_number,
           currency: bankInfo?.currency,
         }),
-      });
-      const response = await request.json();
-      setDisabled(false);
-      if (response.error) {
-        alert(`Error: ${response.error}`);
-      } else {
-        alert(response.message);
-      }
+      })
+      const response = await request.json()
+      setDisabled(false)
+      alert(response.message)
     } catch (err) {
-      console.error(err);
-      setDisabled(false);
-      alert("An error occurred while sending the invoice.");
+      console.error(err)
+      setDisabled(false)
+      alert("Failed to send invoice. Please try again.")
     }
-  };
+  }
 
   if (!isLoaded || !isSignedIn) {
     return (
@@ -105,48 +101,18 @@ export default function Invoices() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Invoice #{id}</h1>
         <div className="flex space-x-4">
-          <button
-            className="p-3 text-blue-50 bg-cyan-600 rounded-md flex items-center"
-            onClick={() => reactToPrintFn()}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width={24}
-              height={24}
-              className="mr-2"
-            >
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                fill="currentColor"
-                d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
-              />
-            </svg>
+          <Button onClick={() => reactToPrintFn()} className="flex items-center">
+            <Download className="mr-2 h-4 w-4" />
             Download
-          </button>
-          <button
-            className="p-3 text-blue-50 bg-green-500 rounded-md flex items-center"
-            onClick={() => {
-              setDisabled(true)
-              handleSendInvoice()
-            }}
+          </Button>
+          <Button
+            onClick={handleSendInvoice}
             disabled={disabled}
+            className="flex items-center"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width={24}
-              height={24}
-              className="mr-2"
-            >
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                fill="currentColor"
-                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-              />
-            </svg>
+            <Send className="mr-2 h-4 w-4" />
             {disabled ? "Sending..." : "Send"}
-          </button>
+          </Button>
         </div>
       </div>
       <Card className="w-full mx-auto shadow-lg" ref={contentRef}>

@@ -24,13 +24,21 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
         }
 
+        let parsedItems;
+        try {
+            parsedItems = typeof items === 'string' ? JSON.parse(items) : items;
+        } catch (error) {
+            console.error("Error parsing items:", error);
+            return NextResponse.json({ message: "Invalid items format" }, { status: 400 });
+        }
+
         const { data, error } = await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",
             to: [customerEmail],
             subject: title,
             react: EmailTemplate({
                 invoiceID,
-                items: JSON.parse(items),
+                items: parsedItems,
                 amount: Number(amount),
                 issuerName,
                 accountNumber,
