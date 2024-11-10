@@ -59,6 +59,7 @@ export default function Invoices() {
 
   const handleSendInvoice = async () => {
     try {
+      setDisabled(true);
       const request = await fetch("/api/invoices/send", {
         method: "POST",
         headers: {
@@ -66,7 +67,7 @@ export default function Invoices() {
         },
         body: JSON.stringify({
           invoiceID: id,
-          items: invoice?.items,
+          items: JSON.stringify(invoice?.items),
           title: invoice?.title,
           amount: invoice?.total_amount,
           customerEmail: customer?.email,
@@ -76,14 +77,20 @@ export default function Invoices() {
           accountNumber: bankInfo?.account_number,
           currency: bankInfo?.currency,
         }),
-      })
-      const response = await request.json()
-      setDisabled(false)
-      alert(response.message)
+      });
+      const response = await request.json();
+      setDisabled(false);
+      if (response.error) {
+        alert(`Error: ${response.error}`);
+      } else {
+        alert(response.message);
+      }
     } catch (err) {
-      console.error(err)
+      console.error(err);
+      setDisabled(false);
+      alert("An error occurred while sending the invoice.");
     }
-  }
+  };
 
   if (!isLoaded || !isSignedIn) {
     return (
