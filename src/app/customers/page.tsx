@@ -89,7 +89,7 @@ export default function Component() {
       fetchCustomers()
     } catch (err) {
       console.error("Failed to delete customer:", err)
-      setAlert({ type: 'error', message: 'Failed to delete customer. Please try again.' })
+      setAlert({ type: 'error', message: 'Customer deletion is not available yet!' })
     }
   }
 
